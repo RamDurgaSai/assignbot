@@ -1,0 +1,7 @@
+# Mongo Atlass 
+DB_PASSWORD="0Cm9Yi03LdGDTQ8K"
+DB_STRING="mongodb+srv://assignbot:pwd@assignbot.g12ee.mongodb.net/assignbot?retryWrites=true&w=majority"
+
+# Twilio Whatsapp Bisuness Api
+TWILIO_ACCOUNT_SID="AC108cf812fde0369e1f2dcfd4ee13efce"
+TWILIO_AUTH_TOKEN="e0658c2e9f224bd89fed00f0c89f6fed"

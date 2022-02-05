@@ -3,12 +3,14 @@ from os.path import join,dirname
 from random import choice
 from typing import List,Union
 from json import loads
+from time import time
+from datetime import timedelta
 
 
 from flask import Flask, request, send_from_directory
 from pymongo import MongoClient
 from twilio.rest import Client
-from pyjokes import get_joke
+from jokes import get_joke
 
 from strings import *
 
@@ -30,6 +32,9 @@ users , messages = db['users'] , db['messages']
 
 # Setup Twillio Client
 client = Client(account_sid, auth_token)
+
+# get time
+starting_time = time()
 
 
 
@@ -54,6 +59,7 @@ def on_message():
     user_number, user_name = msg.get("From").split(":")[1], msg.get("ProfileName")
     text = msg.get("Body").lower() # Original Message Body(if text it is text message)
     words:List[str] = text.split(" ")
+    media_url = None
 
 
     if users.count_documents({ 'number':user_number }, limit = 1) == 0:
@@ -69,8 +75,9 @@ def on_message():
     elif text in give_me_joke : text = get_joke()
     elif text in picuture : media_url = [picsum_link]
     elif text in  documents : media_url = [request.url_root + "random-file"]
+    elif "alive" in text : text = f"Yes I am Alive since *{str(timedelta(seconds=int(time()-starting_time)))}*"
 
-    elif ( 'file' in words or 'document' in words ) and words[-1].isnumeric():
+    elif (( 'file' in words or 'document' in words ) and words[-1].isnumeric()) or text == '5':
             if int(words[-1]) > 10 : text = max_files
             else : media_url =  [request.url_root + "random-file" for _ in  range(int(words[-1]))]
 
@@ -108,3 +115,6 @@ def random_file():
     file = choice(listdir(files))
     return send_from_directory(files, file)
 
+
+if __name__ == "__main__":
+    app.run()

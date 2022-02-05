@@ -22,10 +22,10 @@ response_xml =f"""
 empty_responce_xml = '<?xml version="1.0" encoding="UTF-8"?></Response>'
 
 what_is_my_name = ('1',"say my name","what is my name", 'my name')
-give_me_joke = ('2','joke','say joke','send a joke','tell me a joke')
+give_me_joke = ('2','joke','say joke','send a joke','tell me a joke','random joke')
+picuture = ('random picture', 'random pic', 'pic','picuture','image','random image','photo','random photo','3')
+documents = ('send a file','file','documents','send docoment','send docoments','random file','random files','random document', 'random thing','4')
 help = ('help', 'help me', '/help', '\help')
-picuture = ('random picture', 'random pic', 'pic','picutre','image','random image','4','photo','random photo','3')
-documents = ('send a file','file','document','send docoment','random file','random document', 'random thing','4')
 
 
 max_files = "Sorry I have only *10* files "
