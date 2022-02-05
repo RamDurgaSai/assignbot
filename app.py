@@ -104,7 +104,7 @@ def random_file():
     To get random file from static files 
     @returns: returns any random file from static files
     """
-    files =  join(dirname(getcwd()),"static",'files')
+    files =  join(getcwd(),"static",'files')
     file = choice(listdir(files))
     return send_from_directory(files, file)
 
