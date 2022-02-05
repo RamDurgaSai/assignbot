@@ -108,6 +108,3 @@ def random_file():
     file = choice(listdir(files))
     return send_from_directory(files, file)
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
